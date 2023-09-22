@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, re_path
 
 from landpage.views import txt
 from landpage.views import landpage
@@ -14,32 +14,30 @@ sitemaps = {
     'static': StaticViewSitemap,
 }
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Custom Files
-    url(r'^robots\.txt$', txt.robots_txt_page, name='robots'),
-    url(r'^humans\.txt$', txt.humans_txt_page, name='humans'),
+    re_path(r'^robots\.txt$', txt.robots_txt_page, name='robots'),
+    re_path(r'^humans\.txt$', txt.humans_txt_page, name='humans'),
                        
     # Google Verify
-    url(r'^googlee81f1c16590924d1.html$', google.google_verify_page, name='google_plus_verify'),
-    url(r'^googlee81f1c16590924d1$', google.google_verify_page),
+    re_path(r'^googlee81f1c16590924d1.html$', google.google_verify_page, name='google_plus_verify'),
+    re_path(r'^googlee81f1c16590924d1$', google.google_verify_page),
                        
     # Landpage
-    url(r'^$', landpage.landpage_page, name='landpage'),
-    url(r'^landpage$', landpage.landpage_page),
-    url(r'^course_preview_modal$', landpage.course_preview_modal),
-    url(r'^save_contact_us_message$', landpage.save_contact_us_message),
+    re_path(r'^$', landpage.landpage_page, name='landpage'),
+    re_path(r'^landpage$', landpage.landpage_page),
+    re_path(r'^course_preview_modal$', landpage.course_preview_modal),
+    re_path(r'^save_contact_us_message$', landpage.save_contact_us_message),
                        
     # Off-Convas Stuff
-    url(r'^terms$', terms.terms_page, name='terms'),
-    url(r'^privacy', privacy.privacy_page, name='privacy'),
-    url(r'^forgot_password$', forgot_password.forgot_password_page, name='forgot_password'),
-    url(r'^reset_password$', forgot_password.reset_password, name='reset_password'),
+    re_path(r'^terms$', terms.terms_page, name='terms'),
+    re_path(r'^privacy', privacy.privacy_page, name='privacy'),
+    re_path(r'^forgot_password$', forgot_password.forgot_password_page, name='forgot_password'),
+    re_path(r'^reset_password$', forgot_password.reset_password, name='reset_password'),
                        
     # Sitemap
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
-)
-
-# Captchas
-urlpatterns += patterns('',
-    url(r'^captcha/', include('captcha.urls')),
-)
+    re_path(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+ 
+# Captcha
+  re_path(r'^captcha/', include('captcha.urls')),
+]

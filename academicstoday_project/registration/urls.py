@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, re_path
 from . import views
 
-urlpatterns = patterns('',
-    url(r'^register_modal$', views.register_modal),
-    url(r'^register$', views.register),
-)
+urlpatterns = [
+    re_path(r'^register_modal$', views.register_modal),
+    re_path(r'^register$', views.register),
+]

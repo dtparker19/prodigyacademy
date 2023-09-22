@@ -64,15 +64,18 @@ INSTALLED_APPS = (
     'registrar',
     'student',
     'teacher',
-    'publisher'
+    'publisher',
+    'BaselineAssessment',
+    'ExamSimulator',
+    'flashcards',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -114,10 +117,10 @@ CAPTCHA_FONT_SIZE = 52
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "academicstoday_db",
+        "NAME": "eduMingle",
         "USER": SECRET_DB_USER,
         "PASSWORD": SECRET_DB_PASSWORD,
-        "HOST": "localhost",
+        "HOST": "ep-patient-base-33420127.us-east-2.aws.neon.tech",
         "PORT": "5432",
     }
 }
